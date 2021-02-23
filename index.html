@@ -1,27 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+<style>
+#myProgress {
+  width: 100%;
+  background-color: #ccc;
+}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BabanPomodoTester</title>
-  <link rel="stylesheet" href="assets/styles/main.css">
-</head>
-
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+</style>
 <body>
-  <div id="container">
-    <header>
-      <h1>BabanPomodoTester</h1>
-    </header>
 
-    <main>
-      <div id="progressBarDiv">
-        <div id="progressBar"></div>
-      </div>
-    </main>
-  </div>
+<h1>JavaScript Progress Bar</h1>
 
-  <script src="assets/scripts/main.js"></script>
+<div id="myProgress">
+  <div id="myBar"></div>
+</div>
+
+<br>
+//Change button value to represent "Start" button for Pomodo timer
+<button onclick="move()">Click Me</button> 
+
+<script>
+var i = 0;
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 0.00;
+    // (currently) 25 minute progress bar. The interval number is the value that should change depending on if Pomodo rest or work timer is used
+    var id = setInterval(frame, .15);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width = width + 0.0001;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
+</script>
+
 </body>
-
 </html>
